@@ -91,8 +91,9 @@ function parseJsonBody(req) {
   });
 }
 
-const server = http.createServer(async (req, res) => {
-  const url = new URL(req.url, `http://${req.headers.host}`);
+// ✅ Handler principal extraído para Vercel
+const handler = async (req, res) => {
+  const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   const pathname = decodeURIComponent(url.pathname);
 
   if (req.method === 'GET' && pathname === '/api/health') {
@@ -147,9 +148,16 @@ const server = http.createServer(async (req, res) => {
   }
 
   sendText(res, 404, 'Ruta no encontrada');
-});
+};
 
-server.listen(PORT, HOST, () => {
-  console.log(`Servidor listo en http://${HOST}:${PORT}`);
-  console.log(`Panel admin: http://${HOST}:${PORT}/admin`);
-});
+// ✅ Exportar para Vercel (serverless)
+module.exports = handler;
+
+// ✅ Solo iniciar servidor en local (npm start)
+if (require.main === module) {
+  const server = http.createServer(handler);
+  server.listen(PORT, HOST, () => {
+    console.log(`Servidor listo en http://${HOST}:${PORT}`);
+    console.log(`Panel admin: http://${HOST}:${PORT}/admin`);
+  });
+}

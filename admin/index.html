@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Añadir juego</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <main class="admin-container">
+    <h1>Añadir juego al catálogo</h1>
+
+    <section class="card">
+      <form id="preview-form" class="admin-form">
+        <label for="game-name">Nombre del juego</label>
+        <input id="game-name" name="gameName" type="text" placeholder="Escribe el nombre del juego" required>
+        <button type="submit">Previsualizar</button>
+      </form>
+
+      <div id="message" class="message"></div>
+    </section>
+
+    <section id="preview-card" class="card preview-card hidden">
+      <h2>Vista previa (editable)</h2>
+      <form id="preview-edit-form" class="preview-edit-form">
+        <div class="preview-row">
+          <div>
+            <img id="preview-image" alt="Portada" src="" />
+            <label for="img-url">URL portada (opcional)</label>
+            <input id="img-url" name="img" type="text" placeholder="Dejar vacío para usar la portada RAWG">
+          </div>
+
+          <div class="preview-info">
+            <label for="edit-name">Título</label>
+            <input id="edit-name" name="name" type="text">
+
+            <label for="edit-slug">Slug</label>
+            <input id="edit-slug" name="slug" type="text">
+
+            <label for="edit-rating">Rating</label>
+            <input id="edit-rating" name="rating" type="number" step="0.01" min="0" max="5">
+
+            <label for="edit-size">Tamaño (ej. 55.3 GB)</label>
+            <input id="edit-size" name="size" type="text" placeholder="55.3 GB">
+
+            <label for="edit-genres">Géneros (separados por coma)</label>
+            <input id="edit-genres" name="geners" type="text" placeholder="Accion, Aventura">
+          </div>
+        </div>
+
+        <label for="edit-description">Descripción</label>
+        <textarea id="edit-description" name="description" rows="6"></textarea>
+
+        <div style="margin-top:12px; display:flex; gap:8px;">
+          <button id="confirm-button" type="button">Añadir al catálogo</button>
+          <button id="cancel-button" type="button">Cancelar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

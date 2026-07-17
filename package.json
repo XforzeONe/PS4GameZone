@@ -1,0 +1,14 @@
+{
+  "name": "game-catalog",
+  "version": "1.0.0",
+  "description": "Script CLI para añadir nuevos juegos al catálogo PS4 usando RAWG, Cloudinary y traducción.",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "add-game": "node add-game.js",
+    "admin": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
